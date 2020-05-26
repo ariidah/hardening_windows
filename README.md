@@ -14,7 +14,7 @@ Saya sudah memasang script ini di Laptop saya (sejak 2020-01-26) sejauh ini belu
 
 - Script ini secara otomatis akan menghapus file yang terdeteksi sebagai 'blacklist' (mengandalkan ekstensi, definisi ada di variabel ext_regex) menggunakan Regular Expression (regex), untuk menghemat baris karena hanya butuh match atau mismatch.
 
-- Script ini harus "run as Administrator" agar tidak bisa di terminate oleh orang lain, selain user dengan Administrator Privileges. Ya walaupun bisa diterminate juga harus cepet-cepetan.
+- Script ini harus "run as Administrator" untuk akses registry pada fungsi allowrd() dan denyrd().
 
 - Untuk eksekusi saja, setelah modifikasi tanpa output diasumsikan script sudah OK :
 `wscript.exe hardening_windows_01.vbs`
@@ -43,7 +43,7 @@ proc_regex,string
 - digunakan untuk mengizinkan (whitelist) executable yang menggunakan host 'conhost.exe' silahkan pelajari lebih lanjut untuk kegunaan process 'conhost.exe', isian ini HARUS berisi regex yang WORK, silahkan mempelajari lebih lanjut untuk penggunaan regex.
 - default "(gpg)|(filename-2)|(filename-3).exe$"
 
-repeat (boolean)
+repeat,boolean
 - set false untuk hanya satu kali scan direktori pada removable media
 - set true untuk terus scan direktori pada removable media (digunakan untuk meminimalisir file dicopy ke removable media, berdasarkan ekstensi)
 ---
