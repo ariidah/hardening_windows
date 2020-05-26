@@ -9,23 +9,6 @@ dim console_mode,blacklist,whitelist
 blacklist=false
 repeat=true
 
-set ext_regex = new RegExp
-with ext_regex
-	.pattern = _
-	"(rar)|(exe)|(vbe)|(vbs)$"
-	.ignorecase = true
-	.global = false
-end with
-
-set proc_regex = new RegExp
-with proc_regex
-	.pattern = _
-	"(gpg)" & _
-	".exe$"
-	.ignorecase = false
-	.global = false
-end with
-
 set fs = createObject("scripting.filesystemobject")
 set sh = createObject("wscript.shell")
 set sa = createObject("shell.application")
