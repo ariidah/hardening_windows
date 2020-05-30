@@ -23,7 +23,7 @@ loop
 set ext_regex = new RegExp
 with ext_regex
 	.pattern = _
-	".(rar)|(exe)|(vbe)$"
+	"(rar)|(exe)|(vbe)$"
 	.ignorecase = true
 	.global = false
 end with
