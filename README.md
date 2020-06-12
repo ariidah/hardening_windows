@@ -1,12 +1,14 @@
-# HARDENING WINDOWS
+# hardening_wimdows_01.vbs
 
 ### DISCLAIMER
 
 SAYA TIDAK BERTANGGUNG-JAWAB ATAS KERUGIAN APAPUN YANG MUNGKIN DAN DIHASILKAN DARI SCRIPT INI, BACA DAN PELAJARI DULU ISI DARI SCRIPT INI SEBELUM DIPASANG DI PRODUCTION ENVIRONMENT.
 
-Sesuai namanya, script ini saya gunakan untuk hardening windows ditulis pada bahasa VBScript alasannya tidak perlu repot-repot compile ulang semisal ada baris yang perlu disesuaikan (sewaktu-waktu) ketika akan dijalankan di environment lain. Kekurangannya bisa dimodifikasi dan dibalikkan fungsinya oleh orang lain. Bahkan daripada hardening script ini lebih mirip seperti worm.
+Sesuai namanya, script ini saya gunakan untuk hardening windows ditulis pada bahasa VBScript alasannya tidak perlu repot-repot compile ulang semisal ada baris yang perlu disesuaikan (sewaktu-waktu) ketika akan dijalankan di environment lain. Kekurangannya bisa dimodifikasi dan dibalikkan fungsinya oleh orang lain. Daripada hardening, script ini lebih mirip worm.
 
 Saya sudah memasang script ini di Laptop saya (sejak 2020-01-26) sejauh ini belum ada masalah yang signifikan terkecuali modifikasi-modifikasi script untuk menambah fungsi.
+
+Note : "REMOVABLE MEDIA" yang disebutkan disini adalah media yang bisa di format (Flashdrive, HDD) fitur Android MTP, PTP dan yang lainnya tidak termasuk.
 
 ### PERILAKU SCRIPT
 
@@ -17,15 +19,21 @@ Saya sudah memasang script ini di Laptop saya (sejak 2020-01-26) sejauh ini belu
 - Script ini harus "run as Administrator" untuk akses registry pada fungsi allowrd() dan denyrd().
 
 - Untuk eksekusi saja, setelah modifikasi tanpa output diasumsikan script sudah OK :
-`wscript.exe hardening_windows_01.vbs`
+
+```
+wscript.exe hardening_windows_01.vbs
+```
 
 - Untuk eksekusi (tanpa menghapus file di removable media maupun terminate 'conhost.exe', hanya memanggil allowrd()) menampilkan yang terindikasi akan diubah (terminate process, delete file) bisa menggunakan :
-`cscript.exe hardening_windows_01.vbs`
+
+```
+cscript.exe hardening_windows_01.vbs
+```
 
 ### FUNGSI DAN SUB
 
 denyrd()
-- memblock akses read dan write ke removable media, akibatnya ketika menancapkan flashdrive baru tidak akan bisa diakses, bahkan free space dari removable media tidak akan tampil, hal ini akan terjadi setelah satu file dari removable media MATCH dengan ext_regex.
+- memblock akses read dan write ke removable media, akibatnya ketika menancapkan flashdrive baru tidak akan bisa diakses, free space dari removable media tidak akan tampil, hal ini akan terjadi setelah satu file dari removable media MATCH dengan ext_regex.
 
 allowrd()
 - membuka akses block read dan write ke removable media, selalu dieksekusi di awal script, membatalkan denyrd() via restart PC.
